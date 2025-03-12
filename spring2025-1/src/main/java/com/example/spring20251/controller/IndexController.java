@@ -4,34 +4,42 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
 public class IndexController {
 
-    @RequestMapping("/index") //주소 -> /index라는 주소로 가면 String 리턴
-    @ResponseBody //페이지를 리텅해줘야 하는데, JSON 형태로 리턴해주기 위한 코드 -> 컨트롤러가 찾아가는 주소
-    public String index() {
-        return "index";
+    //test -> test return
+    @RequestMapping("/test1")
+    @ResponseBody
+    public String test(){
+        return "test1";
     }
 
-
-    //@RequestMapping: request를 mapping하는 method
-    //@ResponseBody: page이동
-
-
-    @RequestMapping("/abc")
+    //map
+    @RequestMapping("/map")
     @ResponseBody
-    public Map<String, Object> abc() {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("11","abc");
+    public Map<String, Object> map(){
+        Map<String, Object> map = new HashMap<>();
+        map.put("a","1");
+        map.put("b","2");
         return map;
     }
 
-    //일반 컨트롤러이고, 페이지를 리턴
-    @RequestMapping("/page1") //thymeleaf
-    public String page() {
-        return "sum";
+    //list
+    @RequestMapping("/list")
+    @ResponseBody
+    public List<String> list(){
+        List<String> list = new ArrayList<>();
+        list.add("a");
+        list.add("b");
+        list.add("c");
+        list.add("d");
+        list.remove(2);
+        return list;
     }
+
 }

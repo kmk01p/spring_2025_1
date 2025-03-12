@@ -12,10 +12,11 @@ import java.util.List;
 @Controller //page controller인 경우 그냥 controller
 public class DefaultController {
 
-    @RequestMapping({"","/"}) //스트링 한개 가능
+    @RequestMapping({"","/","/index"}) //스트링 한개 가능
     public String index() {
         return "index";
     }
+
     @RequestMapping("/sum")
     public Model sum(@RequestParam int a, @RequestParam int b, @RequestParam String name, Model model){
         //@RequestParam 어노테이션이 붙은 파라미터인 경우에는 없으면 에러납니다..
@@ -26,6 +27,15 @@ public class DefaultController {
         list.add("soo");
         model.addAttribute("name", list);
         return model;
+    }
+
+    @RequestMapping("/sum1")
+    public String sum1(@RequestParam int a, @RequestParam int b, @RequestParam String name, Model model){
+        int sum = 0;
+        sum = a + b;
+        model.addAttribute("sum", sum);
+        model.addAttribute("name", name);
+        return "sum1";
     }
 
     @RequestMapping({"/test"}) //스트링 한개 가능
