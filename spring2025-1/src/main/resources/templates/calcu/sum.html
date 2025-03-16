@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+</head>
+<body>
+create
+<div>
+    num1 : <input type="number" id="input_num1"/> <br/>
+    num2 : <input type="number" id="input_num2"/> <br/>
+    <button onclick="calcusum()">더하기!</button>
+    <button onclick="calcumulti()">곱하기!</button>
+
+</div>
+
+<script>
+
+    function calcusum(){
+        $.ajax({
+            url: "/api/calcu/sum",
+            method: "GET",
+            data:{
+                num1 : $("#input_num1").val(),
+                num2 : $("#input_num2").val(),
+            },
+            success: (data, status, xhr)=>{
+                alert(JSON.stringify(data));
+                //$("#p_result").html(result);
+            },
+            error: (data, status, xhr)=>{
+                alert(JSON.stringify(data));
+            },
+        });
+    }
+
+    function calcumulti(){
+        $.ajax({
+            url: "/api/calcu/multi",
+            method: "GET",
+            data:{
+                num1 : $("#input_num1").val(),
+                num2 : $("#input_num2").val(),
+            },
+            success: (data, status, xhr)=>{
+                alert(JSON.stringify(data));
+                //$("#p_result").html(result);
+            },
+            error: (data, status, xhr)=>{
+                alert(JSON.stringify(data));
+            },
+        });
+    }
+</script>
+</body>
+</html>

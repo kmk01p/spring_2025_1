@@ -3,8 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>index</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <body>
-index.html
+index 입니다!!
+<a href="javascript:test()">rest ctrl 확인!!</a>
+
+<div>
+    1. 숫자 2개 보내서 곱한 값 아작스로 받아보기!!
+</div>
+<div>
+    a: <input type="number" id="input_a">
+    b: <input type="number" id="input_b">
+    <button onclick="multiple()">결과보기</button>
+    결과: <p id="p_result"> </p>
+</div>
+
+<div>
+    2. id랑 pw 보내보고, 아이디 1234 비번 1111 인 경우에만 성공 메세지 보내보기!
+</div>
+
+<div>
+    a: <input type="number" id="input_id">
+    b: <input type="number" id="input_pw">
+    <button onclick="login()">로그인</button>
+
+</div>
+<script>
+    function login(){
+        $.ajax({
+            url: "/api/multiple",
+            method: "GET",
+            data:{
+                id : $("#input_id").val(),
+                pw : $("#input_pw").val(),
+            },
+            success: (data, status, xhr)=>{
+                let tempStatus = ata[status]; // data.result= data["result]
+                if(tempStatus == "200"){
+                    alert("성공");
+                }else{
+                    alert("실패");
+                }
+                alert(JSON.stringify(data));
+            },
+            error: (data, status, xhr)=>{
+                alert(JSON.stringify(data));
+
+            },
+        });
+    }
+</script>
 </body>
 </html>
