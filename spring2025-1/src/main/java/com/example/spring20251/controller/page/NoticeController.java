@@ -24,7 +24,7 @@ public class NoticeController {
         return "notice/" +page;
     }
 
-    @GetMapping("/{page}/{id}") //get 방식만 받고, url로 치고 들어오는 mapping 방식
+    @GetMapping("/{page}/{id}")
     public String page2(@PathVariable String page, @PathVariable String id){
         return "notice/" +page;
     }

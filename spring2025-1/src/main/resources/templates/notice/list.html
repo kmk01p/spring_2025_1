@@ -8,42 +8,40 @@
 <body>
 notice list
 
-search <br/>
-
-search <br/>
+Search <br/><br/>
+Title<br/>
 <input type="text" id="search_notice_title"/><br/>
-title <br/>
-author <br/>
-<input type="text" id="search_notice_author"/> <br/>
-<br/>
-<button onclick="createNotice()">get list</button>
+Author<br/>
+<input type="text" id="search_notice_author"/>
+<br/><br/>
+<button onclick="listNotice()">Get List</button>
+<br/><br/>
 
 list
 <div id="div_list"></div>
 <script>
-  function createNotice(){
-    $.ajax({
-      url: "/api/notice/create",
-      method: "GET",
-      data:{
-        title : $("#search_notice_title").val(),
-        author : $("#search_notice_author").val()
-      },
-      success: (data, status, xhr)=>{
-        alert(JSON.stringify(data));
-        for (let each of data){
-          $("#div_list").append(
-                  "<div>"
-                  +"id: "+each["id"]+"//title"
-                  +"</div>"
-          )
-        }
-      },
-      error: (data, status, xhr)=>{
-        alert(JSON.stringify(data));
-      },
-    });
-  }
+    function listNotice(){
+        $.ajax({
+            url: "/api/notice/list",
+            method: "GET",
+            data:{
+                title : $("#search_notice_title").val(),
+                author : $("#search_notice_author").val()
+            },
+            success: (data, status, xhr)=>{
+                alert(JSON.stringify(data));
+                for(let each of data){
+                    $("#div_list").append(
+                        "<a href='/notice/detail/"+ each["id"] +"'>" + "id : " + each["id"] + "// title : " + each["title"]
+                        +"</a>"
+                    );
+                }
+            },
+            error: (data, status, xhr)=>{
+                alert(JSON.stringify(data));
+            },
+        });
+    }
 </script>
 </body>
 </html>

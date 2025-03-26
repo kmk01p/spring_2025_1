@@ -8,12 +8,13 @@
 <body>
 
 notice detail
+
 <script>
-  let url = location.hrefl
-  alert(url);
+  let url = location.href;
+  //alert(url);
 
   /*
-  url : ~ /detail/1
+  url :  http://localhost:8080/notice/detail/1
   1. split
   2. lastIndexOf()
    */
@@ -35,8 +36,7 @@ notice detail
       url: "/api/notice/detail",
       method: "GET",
       data:{
-        title : $("#search_notice_title").val(),
-        author : $("#search_notice_author").val()
+          id : id
       },
       success: (data, status, xhr)=>{
         alert(JSON.stringify(data));
