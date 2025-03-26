@@ -2,31 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>index</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <title>notice detail</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <body>
-detail
-<div>
-    id : <input type="number" id="input_id"/> <br/>
-    <button onclick="detailBoard()">상세 보기!</button>
-</div>
 
+notice detail
 <script>
-    function detailBoard(){
-        $.ajax({
-            url: "/api/notice/detail/" + $("#input_id").val(),
-            method: "GET",
-            data:{},
-            success: (data, status, xhr)=>{
-                alert(JSON.stringify(data));
-                //$("#p_result").html(result);
-            },
-            error: (data, status, xhr)=>{
-                alert(JSON.stringify(data));
-            },
-        });
-    }
+  let url = location.hrefl
+  alert(url);
+
+  /*
+  url : ~ /detail/1
+  1. split
+  2. lastIndexOf()
+   */
+
+  //1번
+  let arrayUrl = url.split("/");
+  let id =arrayUrl(arrayUrl.length -1);
+
+  alert(id);
+
+  /*
+  2번 방법
+  let lastIndex = url.lastIndexOf("/");
+  let id =substring(lastIndex.length +1);
+   */
+
+    function detailNotice(){
+    $.ajax({
+      url: "/api/notice/detail",
+      method: "GET",
+      data:{
+        title : $("#search_notice_title").val(),
+        author : $("#search_notice_author").val()
+      },
+      success: (data, status, xhr)=>{
+        alert(JSON.stringify(data));
+        for (let each of data){
+          $("#div_list").append(
+                  "<div>"
+                  +"id: "+each["id"]+"//title"
+                  +"</div>"
+          )
+        }
+      },
+      error: (data, status, xhr)=>{
+        alert(JSON.stringify(data));
+      },
+    });
+  }
+
 </script>
+
 </body>
 </html>

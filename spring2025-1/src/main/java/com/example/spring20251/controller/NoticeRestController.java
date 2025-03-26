@@ -1,5 +1,7 @@
 package com.example.spring20251.controller;
 
+import com.example.spring20251.service.NoticeService;
+import com.example.spring20251.service.impl.NoticeServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,49 +13,21 @@ import java.util.Map;
 @RestController
 public class NoticeRestController {
 
-    List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+    //생성자방식: 생성자가 직접 주입하는 방식
+    NoticeService noticeService;
+    NoticeRestController(NoticeService noticeService){
+        this.noticeService = noticeService;
+    }
 
     @GetMapping("/create")
-    public Map<String, Object> create(@RequestParam String title, @RequestParam String content,@RequestParam Integer
-            id, @RequestParam String author){
-        int resultCode = 0;
-
-        Map<String, Object> notice = new HashMap<>();
-        notice.put("id", id);
-        notice.put("title", title);
-        notice.put("content", content);
-        notice.put("author", author);
-
-        list.add(notice);
-
-        System.out.println("list : " + list.size());
-        resultCode = 200;
-
-        Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("status", resultCode);
-        resultMap.put("order", id);
-        return resultMap;
+    public int create(@RequestParam String title, String content, @RequestParam String author) { //? 이렇게 하면 url에 직접입력할 때, 순서 어떻게 해야 되는지
+        int resultCode = noticeService.create(title, content, author);
+        return resultCode;
     }
+
     @GetMapping("/list")
-    public Map<String, Object> list(){
-        int resultCode = 0;
-        resultCode = 200;
-
-        Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("status", resultCode);
-        resultMap.put("data", list);
-        return resultMap;
-    }
-    @GetMapping("/detail/{id}")
-    public Map<String, Object> detail(@PathVariable("id") int id){
-        int resultCode = 0;
-        resultCode = 200;
-
-        Map<String, Object> board = list.get(id - 1);
-
-        Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("status", resultCode);
-        resultMap.put("data", board);
-        return resultMap;
+    public List<Map<String, Object>> list(String title, String author) {
+        List<Map<String, Object>> resultData = noticeService.list(title, author);
+        return resultData;
     }
 }
