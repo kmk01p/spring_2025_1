@@ -28,6 +28,20 @@ public class PostServiceImpl implements PostService {
         result.put("order", order);
         return result;
     }
+
+    @Override
+    public List<Map<String, Object>> list(){
+        return list;
+    }
+
+    @Override
+    public Map<String, Object> detail(int order){
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", 200);
+        result.put("data", list.get(order - 1));
+        return result;
+    }
+
     @Override
     public Map<String, Object> update(int order,Map<String, Object> param){
         Map<String, Object> board = list.get(order - 1);
@@ -43,6 +57,7 @@ public class PostServiceImpl implements PostService {
         result.put("status", 200);
         return result;
     }
+
     @Override
     public Map<String, Object> delete(int order){
         Map<String, Object> board = list.get(order - 1);
@@ -53,16 +68,5 @@ public class PostServiceImpl implements PostService {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", 200);
         return result;
-    }
-    @Override
-    public Map<String, Object> detail(int order){
-        Map<String, Object> result = new HashMap<String, Object>();
-        result.put("status", 200);
-        result.put("data", list.get(order - 1));
-        return result;
-    }
-    @Override
-    public List<Map<String, Object>> list(){
-        return list;
     }
 }

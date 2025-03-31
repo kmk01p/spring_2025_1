@@ -10,5 +10,8 @@ import java.util.Map;
 @Service
 public interface NoticeService {
     int create(String title, String content, String author);
-    List<Map<String, Object>> list(String title, String author); //검색 기능 추가
+    void update(Map<String, Object> param);
+    void delete(int id);
+    List<Map<String, Object>> list(String title, String author);
+    Map<String, Object> detail(int id);
 }

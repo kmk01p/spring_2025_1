@@ -2,21 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>create</title>
+    <title>Create</title>
+
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <body>
 
-Notice Create <br/>
+Notice Create!! <br/>
 
-title
-<input type = "text" id="create_notice_title"/> <br/>
-content
-<input type = "text" id="create_notice_content"/> <br/>
-author
-<input type = "text" id="create_notice_author"/> <br/>
+Title
+<input type="text" id="create_notice_title"/> <br/>
+Content
+<input type="text" id="create_notice_content"/> <br/>
+Author
+<input type="text" id="create_notice_author"/> <br/>
 
-<button onclick="createNotice()">submit</button>
+<button onclick="createNotice()">Submit</button>
 
 <script>
     function createNotice(){
@@ -30,10 +31,10 @@ author
             },
             success: (data, status, xhr)=>{
                 alert(JSON.stringify(data));
-                if(data===200){
-                    alert("success!");
+                if(data === 200){
+                    alert("Success!!");
                 } else {
-                    alert("fail!");
+                    alert("Failed!!")
                 }
             },
             error: (data, status, xhr)=>{
@@ -42,5 +43,6 @@ author
         });
     }
 </script>
+
 </body>
 </html>
