@@ -40,8 +40,8 @@ public class BoardRestController {
 
     }
 
-    @GetMapping("/delete")
-    public Board delete(@RequestParam Long id){
+    @GetMapping("/delete/{id}")
+    public Board delete(@PathVariable("id") Long id){
         return boardService.delete(id);
     }
 

@@ -23,10 +23,9 @@ detail
 <script>
     function deleteBoard(){
         $.ajax({
-            url: "/api/board/delete",
+            url: "/api/board/delete/" + $("#input_order").val(),
             method: "GET",
             data:{
-                order : $("#input_order").val()
             },
             success: (data, status, xhr)=>{
                 alert(JSON.stringify(data));

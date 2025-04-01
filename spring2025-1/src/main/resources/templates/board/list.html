@@ -18,7 +18,9 @@ list
             method: "GET",
             data:{},
             success: (data, status, xhr)=>{
-                alert(JSON.stringify(data));
+                // deleted가 true인 항목을 제외
+                let filteredData = data.filter(item => !item.deleted);
+                alert(JSON.stringify(filteredData));
                 //$("#p_result").html(result);
             },
             error: (data, status, xhr)=>{

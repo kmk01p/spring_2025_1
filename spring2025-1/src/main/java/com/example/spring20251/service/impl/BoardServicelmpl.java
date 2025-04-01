@@ -49,7 +49,7 @@ public class BoardServicelmpl implements BoardService {
 
     @Override
     public Board update(Long id, Map<String, Object> param) {
-        Board board = boardRepository.findById(Long.valueOf(param.get("id").toString())).orElse(null);
+        Board board = boardRepository.findById(id).orElse(null);
         if (param.get("title") != null) {
             board.setTitle(param.get("title").toString());
         }
@@ -62,13 +62,13 @@ public class BoardServicelmpl implements BoardService {
         return board;
     }
 
-
-
     @Override
     public Board delete(Long id) {
         Board board = boardRepository.findById(id).orElse(null);
+        board.setDeleted(true);
+
+        boardRepository.save(board);
         return board;
     }
-
 
 }
