@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +9,12 @@
 <body>
 detail
 <div>
-    order : <input type="number" id="input_order"/> <br/>
+    id : <input type="number" id="input_order"/> <br/>
     <button onclick="detailBoard()">상세 보기!</button>
     <br/>
     <br/>
-    <input type="text" id="detail_board_title" /> <br/>
-    <input type="text" id="detail_board_content" /> <br/>
+    title: <input type="text" id="detail_board_title" /> <br/>
+    content: <input type="text" id="detail_board_content" /> <br/>
 
     <button onclick="updateBoard()">수정하기</button>
     <button onclick="deleteBoard()">삭제하기</button>
@@ -36,6 +37,7 @@ detail
         });
     }
     function updateBoard(){
+
         $.ajax({
             url: "/api/board/update/" + $("#input_order").val(),
             method: "GET",
@@ -53,9 +55,12 @@ detail
     }
     function detailBoard(){
         $.ajax({
-            url: "/api/board/detail/" + $("#input_order").val(),
+            //url: "/api/board/detail/" + $("#input_order").val(),
+            url: "/api/board/detail",
             method: "GET",
-            data:{},
+            data:{
+                id : $("#input_order").val()
+            },
             success: (data, status, xhr)=>{
                 alert(JSON.stringify(data));
 

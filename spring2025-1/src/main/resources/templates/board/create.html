@@ -10,9 +10,8 @@ create
 <div>
     title : <input type="text" id="input_title"/> <br/>
     content : <input type="text" id="input_content"/> <br/>
-    order : <input type="number" id="input_order"/> <br/>
+    author : <input type="text" id="input_author"/> <br/>
     <button onclick="createBoard()">작성하기!</button>
-
 </div>
 
 <script>
@@ -23,7 +22,7 @@ create
             data:{
                 title : $("#input_title").val(),
                 content : $("#input_content").val(),
-                order : $("#input_order").val()
+                author : $("#input_author").val()
             },
             success: (data, status, xhr)=>{
                 alert(JSON.stringify(data));
